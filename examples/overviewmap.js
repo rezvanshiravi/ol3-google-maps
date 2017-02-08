@@ -43,11 +43,12 @@ var overviewOLGM = new olgm.OLGoogleMaps({
 });
 
 // Activate it
-overviewOLGM.activate();
-
-// Activate the main map only when google maps is done loading in the overview.
-google.maps.event.addListenerOnce(overviewOLGM.gmap, 'idle', function() {
-  olGM.activate();
+olGM.activate();
+//After Loading map, Overview map loaded
+// Must use olGM.getGoogleMapsMap() instead of olGM.getgmap()
+google.maps.event.addListenerOnce(olGM.getGoogleMapsMap(), 'idle', function(){
+				//this part runs when the mapobject is created and rendered   
+     overviewOLGM.activate();
 });
 
 function toggle() {
